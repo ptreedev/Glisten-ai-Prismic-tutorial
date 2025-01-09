@@ -9,6 +9,7 @@ import {
   SliceComponentProps,
 } from "@prismicio/react";
 import "@/app/globals.css";
+import React from "react";
 
 /**
  * Props for `Hero`.
@@ -18,7 +19,7 @@ export type HeroProps = SliceComponentProps<Content.HeroSlice>;
 /**
  * Component for "Hero" Slices.
  */
-const Hero = ({ slice }: HeroProps): JSX.Element => {
+const Hero = ({ slice }: HeroProps): React.JSX.Element => {
   return (
     <Bounded
       data-slice-type={slice.slice_type}
