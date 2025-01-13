@@ -4,7 +4,11 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type PageDocumentDataSlicesSlice = BentoSlice | HeroSlice | RichTextSlice;
+type PageDocumentDataSlicesSlice =
+  | ShowcaseSlice
+  | BentoSlice
+  | HeroSlice
+  | RichTextSlice;
 
 /**
  * Content for Page documents
@@ -414,6 +418,233 @@ export type RichTextSlice = prismic.SharedSlice<
   RichTextSliceVariation
 >;
 
+/**
+ * Item in *Showcase → Default → Primary → Showcase*
+ */
+export interface ShowcaseSliceDefaultPrimaryShowcaseItem {
+  /**
+   * Heading field in *Showcase → Default → Primary → Showcase*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.default.primary.showcase[].heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Image field in *Showcase → Default → Primary → Showcase*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.default.primary.showcase[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Icon field in *Showcase → Default → Primary → Showcase*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.default.primary.showcase[].icon
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  icon: prismic.SelectField<"gear" | "cycle">;
+
+  /**
+   * Subheading field in *Showcase → Default → Primary → Showcase*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.default.primary.showcase[].subheading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subheading: prismic.TitleField;
+
+  /**
+   * Body field in *Showcase → Default → Primary → Showcase*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.default.primary.showcase[].body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Button Text field in *Showcase → Default → Primary → Showcase*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.default.primary.showcase[].button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *Showcase → Default → Primary → Showcase*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.default.primary.showcase[].button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+}
+
+/**
+ * Item in *Showcase → Reverse → Primary → Showcase*
+ */
+export interface ShowcaseSliceReversePrimaryShowcaseItem {
+  /**
+   * Heading field in *Showcase → Reverse → Primary → Showcase*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.reverse.primary.showcase[].heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Image field in *Showcase → Reverse → Primary → Showcase*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.reverse.primary.showcase[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Icon field in *Showcase → Reverse → Primary → Showcase*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.reverse.primary.showcase[].icon
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  icon: prismic.SelectField<"gear" | "cycle">;
+
+  /**
+   * Subheading field in *Showcase → Reverse → Primary → Showcase*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.reverse.primary.showcase[].subheading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subheading: prismic.TitleField;
+
+  /**
+   * Body field in *Showcase → Reverse → Primary → Showcase*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.reverse.primary.showcase[].body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Button Text field in *Showcase → Reverse → Primary → Showcase*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.reverse.primary.showcase[].button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *Showcase → Reverse → Primary → Showcase*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.reverse.primary.showcase[].button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+}
+
+/**
+ * Primary content in *Showcase → Default → Primary*
+ */
+export interface ShowcaseSliceDefaultPrimary {
+  /**
+   * Showcase field in *Showcase → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.default.primary.showcase[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  showcase: prismic.GroupField<
+    Simplify<ShowcaseSliceDefaultPrimaryShowcaseItem>
+  >;
+}
+
+/**
+ * Default variation for Showcase Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ShowcaseSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ShowcaseSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *Showcase → Reverse → Primary*
+ */
+export interface ShowcaseSliceReversePrimary {
+  /**
+   * Showcase field in *Showcase → Reverse → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.reverse.primary.showcase[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  showcase: prismic.GroupField<
+    Simplify<ShowcaseSliceReversePrimaryShowcaseItem>
+  >;
+}
+
+/**
+ * Reverse variation for Showcase Slice
+ *
+ * - **API ID**: `reverse`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ShowcaseSliceReverse = prismic.SharedSliceVariation<
+  "reverse",
+  Simplify<ShowcaseSliceReversePrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Showcase*
+ */
+type ShowcaseSliceVariation = ShowcaseSliceDefault | ShowcaseSliceReverse;
+
+/**
+ * Showcase Shared Slice
+ *
+ * - **API ID**: `showcase`
+ * - **Description**: Showcase
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ShowcaseSlice = prismic.SharedSlice<
+  "showcase",
+  ShowcaseSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -455,6 +686,14 @@ declare module "@prismicio/client" {
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
+      ShowcaseSlice,
+      ShowcaseSliceDefaultPrimaryShowcaseItem,
+      ShowcaseSliceDefaultPrimary,
+      ShowcaseSliceReversePrimaryShowcaseItem,
+      ShowcaseSliceReversePrimary,
+      ShowcaseSliceVariation,
+      ShowcaseSliceDefault,
+      ShowcaseSliceReverse,
     };
   }
 }
